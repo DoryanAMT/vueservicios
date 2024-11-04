@@ -25,7 +25,15 @@
             }
         },
         mounted (){
-            this.coches = service.getCoches();
+
+            // service.getMetodoParametros("Hola mundo").then(result => {
+            //     console.log(result)
+            // })
+
+            //  UNA PROMESA NO ES UN METODO, ES UN OBJETO
+            service.getCoches.then(result => {
+                this.coches = result;
+            })
         }
 
     }

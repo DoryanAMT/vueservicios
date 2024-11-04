@@ -23,19 +23,16 @@
 </template>
 
 <script>
-import axios from 'axios';
-import Global from './../Global';
+import ServiceEmpleados from './../services/ServiceEmpleados'
+const service = new ServiceEmpleados()
 
     export default {
         name: "EmpleadosOficios",
         methods:{
             loadEmpleados(){
-                let oficio = this.$route.params.oficio;
-                let request = "api/empleados/empleadosoficio/" + oficio;
-                let url = Global.urlApiEmpleados+request;
-                axios.get(url).then(response => {
-                    console.log("leyendo oficio empleado");
-                    this.empleados = response.data
+                let oficio = this.$route.params.oficio
+                service.getEmpleadosOficio(oficio).then(result => {
+                    this.empleados = result;
                 })
             }
         },
